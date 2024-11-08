@@ -1,13 +1,16 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.PlanoEntity;
+import com.example.demo.model.dto.PlanoDTO;
 import com.example.demo.service.PlanoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/plano")
@@ -17,21 +20,45 @@ public class PlanoController {
     private PlanoService planoService;
 
     @PostMapping("/criar")
-    public ResponseEntity<String> cadastrarPlano(@Valid @RequestBody PlanoEntity planoEntity){
-        planoService.cadastrarPlano(planoEntity);
-        return ResponseEntity.ok("Tudo certo");
+    public ResponseEntity<String> cadastrarPlano(@Valid @RequestBody PlanoDTO dto){
+        if(planoService.cadastrarPlano(dto)){
+            return ResponseEntity.ok("Tudo certo");
+        }
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao criar plano");
     }
 
     @GetMapping("/listar")
-    public ResponseEntity<?> listarPlanos(){
-        List<PlanoEntity> listPlanos = planoService.listarPlanos();
-        return ResponseEntity.ok(listPlanos);
+    public ResponseEntity<List<PlanoDTO>> listarPlanos(){
+        List<PlanoDTO> listPlanos = planoService.listarPlanos();
+        if(planoService != null){
+            return ResponseEntity.status(HttpStatus.OK).body(listPlanos);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deletePlano(@PathVariable Long id){
-        planoService.deletarPlano(id);
-        return ResponseEntity.ok("tudo Certo");
+    @GetMapping("/plano/{id}")
+    public ResponseEntity<PlanoDTO> getPlano(@PathVariable Long id){
+        PlanoDTO planoDTO = planoService.getPlano(id);
+        if(planoDTO != null){
+            return ResponseEntity.status(HttpStatus.OK).body(planoDTO);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    }
+
+    @PutMapping("/editar/{id}")
+    public ResponseEntity<PlanoDTO> editarPlano(@PathVariable Long id, @Valid @RequestBody PlanoDTO planoDTO){
+        if(planoService.editarPlano(id, planoDTO)){
+            return ResponseEntity.status(HttpStatus.OK).body(planoDTO);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    }
+
+    @DeleteMapping("/plano/{id}")
+    public ResponseEntity<String> deletarPlano(@PathVariable Long id){
+        if(planoService.deletarPlano(id)){
+            return ResponseEntity.status(HttpStatus.OK).body("Deletado");
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Erro ao deletar");
     }
 
 

@@ -18,7 +18,11 @@ public class PlanoEntity {
 
     private String descricao;
 
+    public Double valor;
+
     private int duracao_meses;
+
+
 
 
 }
