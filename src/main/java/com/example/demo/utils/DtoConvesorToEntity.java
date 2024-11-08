@@ -58,8 +58,9 @@ public class DtoConvesorToEntity{
                     if(fieldx.getName().equalsIgnoreCase(fieldDTO.getName())){
                         fieldx.setAccessible(true);
                         fieldDTO.set(dto, fieldx.get(entity));
+                        fieldx.setAccessible(false);
+                        break;
                     }
-                    fieldx.setAccessible(false);
                 }
                 //Field fieldEntity = entity.getClass().getDeclaredField(fieldDTO.getName());
                 //fieldEntity.setAccessible(true);
