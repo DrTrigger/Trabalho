@@ -69,9 +69,7 @@ public class DtoConvesorToEntity{
             catch (Exception e){
                 e.printStackTrace();
             }
-            finally {
 
-            }
         }
         return dto;
     }
