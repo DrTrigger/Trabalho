@@ -34,10 +34,5 @@ public class PlanoController {
         return ResponseEntity.ok("tudo Certo");
     }
 
-    @GetMapping("/somar/{n1}/{n2}")
-    public ResponseEntity<?> somar(@PathVariable int n1, @PathVariable int n2){
-        Integer n = n1 + n2;
-        return ResponseEntity.ok(n);
-    }
 
 }
