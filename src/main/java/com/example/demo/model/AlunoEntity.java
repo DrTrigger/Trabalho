@@ -1,6 +1,9 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,6 +23,10 @@ public class AlunoEntity extends PessoaEntity{
 
     private String restricao_medica;
 
+    @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<ContratoEntity> contratos;
+
     /**
      *
      * @param id
@@ -31,13 +38,15 @@ public class AlunoEntity extends PessoaEntity{
      * @param matricula_aluno
      * @param data_matricula
      * @param restricao_medica
+     * @param contratos
      */
     public AlunoEntity(Long id, String nome, LocalDateTime data_nascimento, String cpf, String email, String senha,
-                       String matricula_aluno, LocalDateTime data_matricula, String restricao_medica) {
+                       String matricula_aluno, LocalDateTime data_matricula, String restricao_medica, List<ContratoEntity> contratos) {
         super(id, nome, data_nascimento, cpf, email, senha);
         this.matricula_aluno = matricula_aluno;
         this.data_matricula = data_matricula;
         this.restricao_medica = restricao_medica;
+        this.contratos = contratos;
     }
 
     public AlunoEntity(){

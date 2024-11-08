@@ -17,7 +17,7 @@ CREATE TABLE Pessoa (
     -- 1 caractere para a barra "/"
     -- 2 caracteres para a sigla do estado (UF)
 CREATE TABLE Professor (
-    idPessoa INTEGER NOT NULL,
+    idPessoa INTEGER PRIMARY KEY,
     salario FLOAT NOT NULL,
     cref VARCHAR(14) UNIQUE NOT NULL,
     carga_horaria_semanal INT NOT NULL,
@@ -26,7 +26,7 @@ CREATE TABLE Professor (
 
 
 CREATE TABLE Aluno (
-    idPessoa INTEGER NOT NULL,
+    idPessoa INTEGER PRIMARY KEY,
     matricula_aluno VARCHAR(255) UNIQUE NOT NULL,
     data_matricula TIMESTAMP DEFAULT NOW(),
     restricao_medica TEXT,

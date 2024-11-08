@@ -23,6 +23,4 @@ public class PlanoEntity {
     private int duracao_meses;
 
 
-
-
 }

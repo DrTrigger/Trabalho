@@ -3,6 +3,8 @@ package com.example.demo.utils;
 import com.example.demo.model.PlanoEntity;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DtoConvesorToEntity{
     /**
@@ -13,7 +15,8 @@ public class DtoConvesorToEntity{
      * @param <E>
      */
     public static <D, E> void DtoToEntity(D dto, E entity){
-        Field[] fieldsEntity = entity.getClass().getDeclaredFields();
+        List<Field> fieldsEntity = getAllFields(entity.getClass());
+        //Field[] fieldsEntity = entity.getClass().getDeclaredFields();
         for (Field fieldEntity : fieldsEntity) {
             fieldEntity.setAccessible(true);
             try {
@@ -45,13 +48,22 @@ public class DtoConvesorToEntity{
      * @param <D>
      */
     public static <E, D> D entityToDto(E entity, D dto){
-        Field[] fieldsDTOList = dto.getClass().getDeclaredFields(); // pego todos os campos declarados no DTO. O nome.
+        Field[] fieldsDTOList = dto.getClass().getDeclaredFields();
+        List<Field> fieldsEntity = getAllFields(entity.getClass());
+        // pego todos os campos declarados no DTO. O nome.
         for(Field fieldDTO: fieldsDTOList){ //percorre campo por campo
             fieldDTO.setAccessible(true); //defino o campo do DTO para acessivel
             try{
-                Field fieldEntity = entity.getClass().getDeclaredField(fieldDTO.getName());
-                fieldEntity.setAccessible(true);
-                fieldDTO.set(dto, fieldEntity.get(entity));
+                for(Field fieldx: fieldsEntity){
+                    if(fieldx.getName().equalsIgnoreCase(fieldDTO.getName())){
+                        fieldx.setAccessible(true);
+                        fieldDTO.set(dto, fieldx.get(entity));
+                    }
+                    fieldx.setAccessible(false);
+                }
+                //Field fieldEntity = entity.getClass().getDeclaredField(fieldDTO.getName());
+                //fieldEntity.setAccessible(true);
+                //fieldDTO.set(dto, fieldEntity.get(entity));
             }
             catch (Exception e){
                 e.printStackTrace();
@@ -61,6 +73,18 @@ public class DtoConvesorToEntity{
             }
         }
         return dto;
+    }
+
+
+    private static List<Field> getAllFields(Class<?> clazz) {
+        List<Field> fields = new ArrayList<>();
+        while (clazz != null) { // Percorre até o topo da hierarquia
+            for (Field field : clazz.getDeclaredFields()) {
+                fields.add(field);
+            }
+            clazz = clazz.getSuperclass(); // Avança para a superclasse
+        }
+        return fields;
     }
 
 }
