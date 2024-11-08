@@ -20,6 +20,9 @@ public class DtoConvesorToEntity{
                 // Busca o campo correspondente no DTO
                 Field fieldDto = dto.getClass().getDeclaredField(fieldEntity.getName());
                 fieldDto.setAccessible(true);
+                if(fieldDto.get(dto) == null){ //Se for vazio, para que alterar?
+                    continue;
+                }
                 // Copia o valor do campo do DTO para a entidade
                 fieldEntity.set(entity, fieldDto.get(dto));
             } catch (NoSuchFieldException e) {
