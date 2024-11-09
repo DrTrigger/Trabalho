@@ -121,7 +121,7 @@ public class DtoConvesorToEntity{
                             caminho.append(".dto.");
                             caminho.append(fieldx.get(entity).getClass().getSimpleName().replace("Entity", "DTO"));
                             Class<?> clazz = Class.forName(String.valueOf(caminho));
-                            D instancia = entityToDto( fieldx.get(entity), (D) clazz.getDeclaredConstructor().newInstance(), repeat);
+                            D instancia = entityToDto( fieldx.get(entity), (D) clazz.getDeclaredConstructor().newInstance(), repeat++);
 
                             fieldDTO.set(dto, instancia);
                             // Tento converter ele pra um DTO, se possivel.
