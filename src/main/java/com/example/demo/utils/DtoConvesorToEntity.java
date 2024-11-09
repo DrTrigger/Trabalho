@@ -57,7 +57,20 @@ public class DtoConvesorToEntity{
                 for(Field fieldx: fieldsEntity){
                     if(fieldx.getName().equalsIgnoreCase(fieldDTO.getName())){
                         fieldx.setAccessible(true);
-                        fieldDTO.set(dto, fieldx.get(entity));
+                        try {
+                            fieldDTO.set(dto, fieldx.get(entity));
+                        } catch (IllegalArgumentException e) {
+                            StringBuilder caminho = new StringBuilder();
+                            caminho.append(entity.getClass().getPackageName());
+                            caminho.append(".dto.");
+                            caminho.append(fieldx.get(entity).getClass().getSimpleName().replace("Entity", "DTO"));
+                            Class<?> clazz = Class.forName(String.valueOf(caminho));
+                            D instancia = entityToDto( fieldx.get(entity), (D) clazz.getDeclaredConstructor().newInstance());
+
+                            fieldDTO.set(dto, instancia);
+                            // Tento converter ele pra um DTO, se possivel.
+                            //entityToDto(fieldx.get(entity), fieldx.getName().equalsIgnoreCase(fieldDTO.getName()));
+                        }
                         fieldx.setAccessible(false);
                         break;
                     }
@@ -85,6 +98,50 @@ public class DtoConvesorToEntity{
             clazz = clazz.getSuperclass(); // Avança para a superclasse
         }
         return fields;
+    }
+
+    public static <E, D> D entityToDto(E entity, D dto, int repeat){
+        if(repeat > 1){
+            return null;
+        }
+        Field[] fieldsDTOList = dto.getClass().getDeclaredFields();
+        List<Field> fieldsEntity = getAllFields(entity.getClass());
+        // pego todos os campos declarados no DTO. O nome.
+        for(Field fieldDTO: fieldsDTOList){ //percorre campo por campo
+            fieldDTO.setAccessible(true); //defino o campo do DTO para acessivel
+            try{
+                for(Field fieldx: fieldsEntity){
+                    if(fieldx.getName().equalsIgnoreCase(fieldDTO.getName())){
+                        fieldx.setAccessible(true);
+                        try {
+                            fieldDTO.set(dto, fieldx.get(entity));
+                        } catch (IllegalArgumentException e) {
+                            StringBuilder caminho = new StringBuilder();
+                            caminho.append(entity.getClass().getPackageName());
+                            caminho.append(".dto.");
+                            caminho.append(fieldx.get(entity).getClass().getSimpleName().replace("Entity", "DTO"));
+                            Class<?> clazz = Class.forName(String.valueOf(caminho));
+                            D instancia = entityToDto( fieldx.get(entity), (D) clazz.getDeclaredConstructor().newInstance(), repeat);
+
+                            fieldDTO.set(dto, instancia);
+                            // Tento converter ele pra um DTO, se possivel.
+                            //entityToDto(fieldx.get(entity), fieldx.getName().equalsIgnoreCase(fieldDTO.getName()));
+                        }
+                        fieldx.setAccessible(false);
+                        break;
+                    }
+                }
+                //teste
+                //Field fieldEntity = entity.getClass().getDeclaredField(fieldDTO.getName());
+                //fieldEntity.setAccessible(true);
+                //fieldDTO.set(dto, fieldEntity.get(entity));
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+        return dto;
     }
 
 }

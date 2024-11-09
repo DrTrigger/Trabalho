@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AlunoService {
@@ -39,5 +40,18 @@ public class AlunoService {
             alunoDTOS.add(alunoDTO);
         }
         return alunoDTOS;
+    }
+
+    public boolean deleteAluno(Long id) {
+        try {
+            Optional<AlunoEntity> alunoEntity = alunoRepository.findById(id);
+            if (alunoEntity.isPresent()) {
+                alunoRepository.delete(alunoEntity.get());
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

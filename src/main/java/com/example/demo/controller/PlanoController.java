@@ -18,7 +18,12 @@ public class PlanoController {
     @Autowired
     private PlanoService planoService;
 
-    @PostMapping("/criar")
+    /**
+     *
+     * @param dto
+     * @return
+     */
+    @PostMapping("/cadastrar")
     public ResponseEntity<String> cadastrarPlano(@Valid @RequestBody PlanoDTO dto){
         if(planoService.cadastrarPlano(dto)){
             return ResponseEntity.ok("Tudo certo");
@@ -26,6 +31,10 @@ public class PlanoController {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao criar plano");
     }
 
+    /**
+     *
+     * @return
+     */
     @GetMapping("/listar")
     public ResponseEntity<List<PlanoDTO>> listarPlanos(){
         List<PlanoDTO> listPlanos = planoService.listarPlanos();
@@ -35,6 +44,11 @@ public class PlanoController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     @GetMapping("/plano/{id}")
     public ResponseEntity<PlanoDTO> getPlano(@PathVariable Long id){
         PlanoDTO planoDTO = planoService.getPlano(id);
@@ -44,6 +58,12 @@ public class PlanoController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
 
+    /**
+     *
+     * @param id
+     * @param planoDTO
+     * @return
+     */
     @PutMapping("/editar/{id}")
     public ResponseEntity<PlanoDTO> editarPlano(@PathVariable Long id, @Valid @RequestBody PlanoDTO planoDTO){
         if(planoService.editarPlano(id, planoDTO)){
@@ -52,7 +72,12 @@ public class PlanoController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
 
-    @DeleteMapping("/plano/{id}")
+    /**
+     *
+     * @param id
+     * @return
+     */
+    @DeleteMapping("/deletar/{id}")
     public ResponseEntity<String> deletarPlano(@PathVariable Long id){
         if(planoService.deletarPlano(id)){
             return ResponseEntity.status(HttpStatus.OK).body("Deletado");

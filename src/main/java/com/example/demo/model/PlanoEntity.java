@@ -1,8 +1,11 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Table(name = "Plano")
 @Entity(name = "Plano")
@@ -22,5 +25,11 @@ public class PlanoEntity {
 
     private int duracao_meses;
 
+    //OBS!
+    //A anotação cascade = CascadeType.ALL
+    // no JPA define que todas as operações de persistência realizadas na entidade "mestre" também serão aplicadas automaticamente nas entidades associadas.
+//    @OneToMany(mappedBy = "plano", cascade = CascadeType.ALL)
+//    @JsonManagedReference("plano-contrato")
+//    private List<ContratoEntity> contratos;
 
 }

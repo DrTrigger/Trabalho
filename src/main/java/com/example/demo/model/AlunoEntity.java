@@ -24,7 +24,7 @@ public class AlunoEntity extends PessoaEntity{
     private String restricao_medica;
 
     @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
+    @JsonManagedReference("aluno-contrato")
     private List<ContratoEntity> contratos;
 
     /**

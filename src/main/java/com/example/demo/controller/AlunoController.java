@@ -34,4 +34,12 @@ public class AlunoController {
         return ResponseEntity.ok(alunoService.listAlunos());
         //return ResponseEntity.ok(alunoRepository.findAll());
     }
+
+    @DeleteMapping("/deletar/{id}")
+    public ResponseEntity<String> deleteAluno(@PathVariable Long id){
+        if(alunoService.deleteAluno(id)){
+            return ResponseEntity.status(HttpStatus.OK).body("Aluno deletado com sucesso");
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Erro ao deletar");
+    }
 }
