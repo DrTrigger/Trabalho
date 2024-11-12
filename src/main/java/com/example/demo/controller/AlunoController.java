@@ -42,4 +42,13 @@ public class AlunoController {
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Erro ao deletar");
     }
+
+
+    @PutMapping("/editar/{id}")
+    public ResponseEntity<String> editarAluno(@PathVariable Long id, @Valid @RequestBody AlunoDTO alunoDTO){
+        if(alunoService.editarAluno(id, alunoDTO)){
+            return ResponseEntity.status(HttpStatus.OK).body("Aluno atualizado com sucesso");
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Erro ao editar.");
+    }
 }

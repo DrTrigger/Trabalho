@@ -49,7 +49,7 @@ public class PlanoController {
      * @param id
      * @return
      */
-    @GetMapping("/plano/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<PlanoDTO> getPlano(@PathVariable Long id){
         PlanoDTO planoDTO = planoService.getPlano(id);
         if(planoDTO != null){

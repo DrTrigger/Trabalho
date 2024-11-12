@@ -49,15 +49,6 @@ public class ContratoController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
 
-//    @GetMapping("/listar")
-//    public ResponseEntity<List<ContratoDTO>> listarContratos(){
-//        List<ContratoDTO> listContratos = contratoService.listarContratos();
-//        if(listContratos != null){
-//            return ResponseEntity.status(HttpStatus.OK).body(listContratos);
-//        }
-//        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-//    }
-
     /**
      *
      * @param id

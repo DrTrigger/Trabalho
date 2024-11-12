@@ -54,4 +54,18 @@ public class AlunoService {
             throw new RuntimeException(e);
         }
     }
+
+    public boolean editarAluno(Long id, AlunoDTO alunoDTO) {
+        try{
+            Optional<AlunoEntity> alunoEntity = alunoRepository.findById(id);
+            if(alunoEntity.isPresent()){
+                DtoConvesorToEntity.DtoToEntity(alunoDTO, alunoEntity.get());
+                this.alunoRepository.save(alunoEntity.get());
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
