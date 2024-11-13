@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
@@ -13,11 +14,12 @@ import java.util.List;
 @Entity(name = "Professor")
 @Setter
 @Getter
+@NoArgsConstructor
 public class ProfessorEntity extends PessoaEntity{
 
     private double salario;
 
-    @Pattern(regexp = "^CREF\\s\\d{6}-[GP]/[A-Z]{2}$", message = "Número de registro do CREF inválido")
+    @Pattern(regexp = "^\\d{6}-[GP]/[A-Z]{2}$", message = "Número de registro do CREF inválido")
     private String cref;
 
     private int carga_horaria_semanal;

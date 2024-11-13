@@ -22,7 +22,9 @@ public class AlunoDTO {
     private String restricao_medica;
     private List<ContratoDTO> contratos;
 
-    public AlunoDTO(Long id, String nome, String restricao_medica, String matricula_aluno, LocalDateTime data_matricula, String senha, String email, LocalDateTime data_nascimento, String cpf, List<ContratoDTO> contratos) {
+    public AlunoDTO(Long id, String nome, String restricao_medica, String matricula_aluno,
+                    LocalDateTime data_matricula, String senha, String email, LocalDateTime data_nascimento,
+                    String cpf, List<ContratoDTO> contratos) {
         this.id = id;
         this.nome = nome;
         this.restricao_medica = restricao_medica;
