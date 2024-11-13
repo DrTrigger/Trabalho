@@ -1,7 +1,6 @@
--- Teste
 CREATE TABLE Contrato(
     idContrato SERIAL PRIMARY KEY,
-    idPessoa INT NOT NULL, --idAluno
+    idPessoa INT NOT NULL,
     idplano INT NOT NULL,
     nome VARCHAR(20) NOT NULL,
     data_inicio TIMESTAMP NOT NULL DEFAULT NOW(),
@@ -11,4 +10,4 @@ CREATE TABLE Contrato(
     valor_pago FLOAT NOT NULL,
     FOREIGN KEY (idPessoa) REFERENCES Aluno(idPessoa) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (idplano) REFERENCES Plano(idplano) ON UPDATE CASCADE
-)
+);
