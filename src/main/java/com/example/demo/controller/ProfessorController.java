@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/professor")
@@ -29,8 +30,11 @@ public class ProfessorController {
 
     @GetMapping("/listar")
     public ResponseEntity<List<ProfessorResponseDTO>> listProfessor(){
-        return ResponseEntity.ok(professorService.listProfessor());
-        //return ResponseEntity.ok(alunoRepository.findAll());
+        List<ProfessorResponseDTO> professorResponseDTOList = professorService.listProfessor();
+        if(!professorResponseDTOList.isEmpty()){
+            return ResponseEntity.status(HttpStatus.OK).body(professorResponseDTOList);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
 
     @DeleteMapping("/deletar/{id}")
