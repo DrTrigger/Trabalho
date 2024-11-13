@@ -15,12 +15,12 @@ public class ProfessorDTO {
     private String cpf;
     private String email;
     private String senha;
-    private double salario;
+    private Double salario;
     private String cref;
     private Integer carga_horaria_semanal;
 
     public ProfessorDTO(String nome, LocalDateTime data_nascimento, String cpf,
-                        String email, String senha, double salario, String cref,
+                        String email, String senha, Double salario, String cref,
                         Integer carga_horaria_semanal) {
         this.nome = nome;
         this.data_nascimento = data_nascimento;

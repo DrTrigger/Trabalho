@@ -25,7 +25,7 @@ public class ProfessorController {
         if(professorService.cadastrarProfessor(professorDTO)){
             return ResponseEntity.ok("Criado");
         }
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao criar aluno");
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao criar Professor");
     }
 
     @GetMapping("/listar")
@@ -40,16 +40,16 @@ public class ProfessorController {
     @DeleteMapping("/deletar/{id}")
     public ResponseEntity<String> deleteProfessor(@PathVariable Long id){
         if(professorService.deleteProfessor(id)){
-            return ResponseEntity.status(HttpStatus.OK).body("Aluno deletado com sucesso");
+            return ResponseEntity.status(HttpStatus.OK).body("Professor deletado com sucesso");
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Erro ao deletar");
     }
 
 
     @PutMapping("/editar/{id}")
-    public ResponseEntity<String> editarProfessor(@PathVariable Long id, @Valid @RequestBody AlunoDTO alunoDTO){
-        if(professorService.editarProfessor(id, alunoDTO)){
-            return ResponseEntity.status(HttpStatus.OK).body("Aluno atualizado com sucesso");
+    public ResponseEntity<String> editarProfessor(@PathVariable Long id, @Valid @RequestBody ProfessorDTO professorDTO){
+        if(professorService.editarProfessor(id, professorDTO)){
+            return ResponseEntity.status(HttpStatus.OK).body("Professor atualizado com sucesso");
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Erro ao editar.");
     }

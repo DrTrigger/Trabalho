@@ -15,6 +15,6 @@ public class PlanoDTO {
     private String nome;
     private String descricao;
     private Double valor;
-    private int duracao_meses;
+    private Integer duracao_meses;
     //private List<ContratoEntity> contratos;
 }

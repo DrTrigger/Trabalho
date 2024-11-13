@@ -69,7 +69,17 @@ public class ProfessorService {
         }
     }
 
-    public boolean editarProfessor(Long id, AlunoDTO alunoDTO) {
-        return false;
+    public boolean editarProfessor(Long id, ProfessorDTO ProfessorDTO) {
+        try{
+            Optional<ProfessorEntity> professorEntity = professorRepository.findById(id);
+            if(professorEntity.isPresent()){
+                DtoConvesorToEntity.DtoToEntity(ProfessorDTO, professorEntity.get());
+                professorRepository.save(professorEntity.get());
+            }
+            return true;
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
