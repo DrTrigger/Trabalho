@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.model.AlunoEntity;
 import com.example.demo.model.ProfessorEntity;
 import com.example.demo.model.dto.AlunoDTO;
 import com.example.demo.model.dto.ProfessorDTO;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProfessorService {
@@ -55,7 +57,16 @@ public class ProfessorService {
     }
 
     public boolean deleteProfessor(Long id) {
-        return false;
+        try {
+            Optional<ProfessorEntity> professorEntity = professorRepository.findById(id);
+            if (professorEntity.isPresent()) {
+                professorRepository.delete(professorEntity.get());
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public boolean editarProfessor(Long id, AlunoDTO alunoDTO) {
