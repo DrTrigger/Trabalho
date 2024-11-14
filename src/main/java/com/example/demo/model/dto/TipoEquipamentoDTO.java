@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class TipoEquipamentoDTO {
+public class TipoEquipamentoDTO implements DTO{
     private String nomeTipo;
     private String descricao;
 }

@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 @NoArgsConstructor
-public class ProfessorResponseDTO {
+public class ProfessorResponseDTO implements DTO{
     private Long id;
     private String nome;
     private LocalDateTime data_nascimento;

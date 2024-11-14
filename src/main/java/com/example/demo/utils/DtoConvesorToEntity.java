@@ -1,6 +1,7 @@
 package com.example.demo.utils;
 
 import com.example.demo.model.PlanoEntity;
+import com.example.demo.model.dto.DTO;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ public class DtoConvesorToEntity{
      * @param <D>
      * @param <E>
      */
-    public static <D, E> void DtoToEntity(D dto, E entity){
+    public static <D extends DTO, E> void DtoToEntity(D dto, E entity){
         List<Field> fieldsEntity = getAllFields(entity.getClass());
         //Field[] fieldsEntity = entity.getClass().getDeclaredFields();
         for (Field fieldEntity : fieldsEntity) {
@@ -47,7 +48,7 @@ public class DtoConvesorToEntity{
      * @param <E>
      * @param <D>
      */
-    public static <E, D> D entityToDto(E entity, D dto){
+    public static <E, D extends DTO> D entityToDto(E entity, D dto){
         Field[] fieldsDTOList = dto.getClass().getDeclaredFields();
         List<Field> fieldsEntity = getAllFields(entity.getClass());
         // pego todos os campos declarados no DTO. O nome.
@@ -100,7 +101,7 @@ public class DtoConvesorToEntity{
         return fields;
     }
 
-    public static <E, D> D entityToDto(E entity, D dto, int repeat){
+    public static <E, D extends DTO> D entityToDto(E entity, D dto, int repeat){
         if(repeat > 1){
             return null;
         }

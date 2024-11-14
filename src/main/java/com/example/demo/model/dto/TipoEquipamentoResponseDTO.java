@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class TipoEquipamentoResponseDTO {
+public class TipoEquipamentoResponseDTO implements DTO{
     private Long idTipo;
     private String nomeTipo;
     private String descricao;

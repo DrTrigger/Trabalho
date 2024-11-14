@@ -10,7 +10,7 @@ import java.util.List;
 
 @Setter
 @Getter
-public class AlunoDTO {
+public class AlunoDTO implements DTO{
     private Long id;
     private String nome;
     private LocalDateTime data_nascimento;

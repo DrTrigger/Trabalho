@@ -1,4 +1,4 @@
 package com.example.demo.model.dto;
 
-public class ExercicioDTO {
+public class ExercicioDTO implements DTO{
 }

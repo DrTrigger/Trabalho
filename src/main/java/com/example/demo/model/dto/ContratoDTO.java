@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 @Setter
 @Getter
-public class ContratoDTO {
+public class ContratoDTO implements DTO {
     private Long idPessoa;
     private Long idPlano;
     private String nome;

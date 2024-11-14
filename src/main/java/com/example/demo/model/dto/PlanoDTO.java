@@ -10,7 +10,7 @@ import java.util.List;
 
 @Setter
 @Getter
-public class PlanoDTO {
+public class PlanoDTO implements DTO{
     private Long id;
     private String nome;
     private String descricao;

@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 @NoArgsConstructor
-public class ContratoResponseDTO {
+public class ContratoResponseDTO implements DTO{
     private Long id;
     private AlunoDTO aluno;
     private PlanoDTO plano;
