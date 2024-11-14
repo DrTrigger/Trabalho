@@ -2,7 +2,9 @@ package com.example.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
@@ -11,6 +13,8 @@ import java.util.List;
 @Entity(name = "Plano")
 @Setter
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class PlanoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

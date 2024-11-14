@@ -1,5 +1,4 @@
 package com.example.demo.model.dto;
 
-
-public class EquipamentoDTO {
+public class EquipamentoResponseDTO {
 }

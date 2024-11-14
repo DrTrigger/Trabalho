@@ -1,4 +1,7 @@
 package com.example.demo.repository;
 
-public interface SolicitacaoAlteracaoRepository {
+import com.example.demo.model.SolicitacaoAlteracaoEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface SolicitacaoAlteracaoRepository {//extends JpaRepository<SolicitacaoAlteracaoEntity, Long> {
 }

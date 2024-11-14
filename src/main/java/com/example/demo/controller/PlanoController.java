@@ -38,7 +38,7 @@ public class PlanoController {
     @GetMapping("/listar")
     public ResponseEntity<List<PlanoDTO>> listarPlanos(){
         List<PlanoDTO> listPlanos = planoService.listarPlanos();
-        if(planoService != null){
+        if(listPlanos != null){
             return ResponseEntity.status(HttpStatus.OK).body(listPlanos);
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);

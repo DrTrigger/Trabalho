@@ -1,4 +1,7 @@
 package com.example.demo.repository;
 
-public interface EquipamentoRepository {
+import com.example.demo.model.EquipamentoEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface EquipamentoRepository extends JpaRepository<EquipamentoEntity, Long> {
 }
