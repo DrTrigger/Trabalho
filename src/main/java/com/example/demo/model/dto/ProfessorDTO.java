@@ -1,5 +1,7 @@
 package com.example.demo.model.dto;
 
+import jakarta.validation.constraints.Pattern;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,6 +10,7 @@ import java.time.LocalDateTime;
 
 @Setter
 @Getter
+@AllArgsConstructor
 @NoArgsConstructor
 public class ProfessorDTO implements DTO{
     private String nome;
@@ -19,16 +22,4 @@ public class ProfessorDTO implements DTO{
     private String cref;
     private Integer carga_horaria_semanal;
 
-    public ProfessorDTO(String nome, LocalDateTime data_nascimento, String cpf,
-                        String email, String senha, Double salario, String cref,
-                        Integer carga_horaria_semanal) {
-        this.nome = nome;
-        this.data_nascimento = data_nascimento;
-        this.cpf = cpf;
-        this.email = email;
-        this.senha = senha;
-        this.salario = salario;
-        this.cref = cref;
-        this.carga_horaria_semanal = carga_horaria_semanal;
-    }
 }

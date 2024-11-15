@@ -76,10 +76,6 @@ public class DtoConvesorToEntity{
                         break;
                     }
                 }
-                //teste
-                //Field fieldEntity = entity.getClass().getDeclaredField(fieldDTO.getName());
-                //fieldEntity.setAccessible(true);
-                //fieldDTO.set(dto, fieldEntity.get(entity));
             }
             catch (Exception e){
                 e.printStackTrace();

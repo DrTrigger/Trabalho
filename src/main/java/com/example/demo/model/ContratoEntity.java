@@ -35,7 +35,7 @@ public class ContratoEntity {
     private Double valor_pago;
 
     @ManyToOne
-    @JoinColumn(name = "idplano")
+    @JoinColumn(name = "idplano") //dentro da tabela contrato, nao em plano!
     @JsonBackReference("plano-contrato")
     private PlanoEntity plano;
 
