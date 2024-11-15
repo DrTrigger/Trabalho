@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.FichaEntity;
+import com.example.demo.model.dto.AlunoDTO;
 import com.example.demo.model.dto.FichaDTO;
 import com.example.demo.model.dto.FichaResponseDTO;
 import com.example.demo.model.dto.TipoEquipamentoResponseDTO;
@@ -24,12 +25,11 @@ public class FichaController {
 
     // Criar uma nova ficha
     @PostMapping("/cadastrar")
-    public ResponseEntity<FichaResponseDTO> criarFicha(@Valid @RequestBody FichaDTO fichaDTO) {
-        FichaResponseDTO fichaResponseDTO = fichaService.cadastrarFicha(fichaDTO);
-        if (fichaResponseDTO != null) {
-            return ResponseEntity.status(HttpStatus.CREATED).body(fichaResponseDTO);
+    public ResponseEntity<String> criarFicha(@Valid @RequestBody FichaDTO fichaDTO) {
+        if(fichaService.cadastrarFicha(fichaDTO)){
+            return ResponseEntity.status(HttpStatus.CREATED).body("ficha criada com sucesso");
         }
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao criar ficha");
     }
 
     @GetMapping("/listar")
@@ -40,4 +40,6 @@ public class FichaController {
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
+
+
 }
