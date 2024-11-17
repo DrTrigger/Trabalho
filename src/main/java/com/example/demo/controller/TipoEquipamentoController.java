@@ -18,6 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/equipamentos/tipos")
 public class TipoEquipamentoController {
+
     @Autowired
     private TipoEquipamentoService tipoEquipamentoService;
 

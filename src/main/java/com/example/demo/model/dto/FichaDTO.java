@@ -1,9 +1,18 @@
 package com.example.demo.model.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-public record FichaDTO (LocalDateTime data_inicio, LocalDateTime data_fim, Long id_aluno, Long id_professor ) implements DTO{
-
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+public class FichaDTO implements DTO {
+    private LocalDateTime dataInicio;
+    private LocalDateTime dataFim;
+    private Long idAluno;
+    private Long idProfessor;
 }

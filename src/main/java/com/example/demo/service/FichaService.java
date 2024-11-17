@@ -50,13 +50,13 @@ public class FichaService {
         try{
              //um aluno pode ter varias fichas, no caso dele ser um atléta, pode ocorrer dele ter fichas periódicas... Entao, complica.
             FichaEntity ficha = new FichaEntity();
-            Optional<AlunoEntity> aluno = alunoRepository.findById(fichaDTO.id_aluno());
-            Optional<ProfessorEntity> professor = professorRepository.findById(fichaDTO.id_professor());
+            Optional<AlunoEntity> aluno = alunoRepository.findById(fichaDTO.getIdAluno());
+            Optional<ProfessorEntity> professor = professorRepository.findById(fichaDTO.getIdProfessor());
 
             ficha.setAluno(aluno.orElse(null));
             ficha.setProfessor(professor.orElse(null));
-            ficha.setData_inicio(fichaDTO.data_inicio());
-            ficha.setData_fim(fichaDTO.data_fim());
+            ficha.setData_inicio(fichaDTO.getDataInicio());
+            ficha.setData_fim(fichaDTO.getDataFim());
             fichaRepository.save(ficha);
             return true;
         } catch (Exception e) {
