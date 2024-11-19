@@ -53,4 +53,24 @@ public class ExercicioFichaService {
             throw new RuntimeException(e);
         }
     }
+
+    public boolean cadastrarExercicioFicha(ExercicioFichaDTO exercicioFichaDTO) {
+        try{
+            ExercicioFichaEntity exercicioFicha = new ExercicioFichaEntity();
+
+            exercicioFicha.setExercicio(exercicioRepository.findById(exercicioFichaDTO.getId_exercicio()).isPresent() ? exercicioRepository.findById(exercicioFichaDTO.getId_exercicio()).get() : null);
+            exercicioFicha.setFicha(fichaRepository.findById(exercicioFichaDTO.getId_ficha()).isPresent() ? fichaRepository.findById(exercicioFichaDTO.getId_ficha()).get() : null);
+            exercicioFicha.setNumero_repeticao(exercicioFichaDTO.getNumero_repeticao());
+            exercicioFicha.setTempo_descanso(exercicioFichaDTO.getTempo_descanso());
+            exercicioFicha.setPeso(exercicioFichaDTO.getPeso());
+            exercicioFicha.setEquipamento(equipamentoRepository.findById(exercicioFichaDTO.getId_equipamento()).isPresent() ? equipamentoRepository.findById(exercicioFichaDTO.getId_equipamento()).get() : null);
+            exercicioFichaRepository.save(exercicioFicha);
+            return true;
+        }catch (Exception e){
+            throw new RuntimeException();
+        }
+        finally {
+
+        }
+    }
 }
