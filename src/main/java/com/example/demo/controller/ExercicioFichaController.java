@@ -38,4 +38,12 @@ public class ExercicioFichaController {
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
+
+    @PutMapping("/editar/{id}")
+    public ResponseEntity<String> editarExercicio(@PathVariable Long id, @Valid @RequestBody ExercicioFichaDTO exercicioFichaDTO) {
+        if (exercicioFichaService.editarExercicioFicha(id, exercicioFichaDTO)) {
+            return ResponseEntity.status(HttpStatus.OK).body("Exercicio da ficha atualizado com sucesso");
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Erro ao editar Exercicio da ficha");
+    }
 }

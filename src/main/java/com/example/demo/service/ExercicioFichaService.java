@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ExercicioFichaService {
@@ -69,8 +70,19 @@ public class ExercicioFichaService {
         }catch (Exception e){
             throw new RuntimeException();
         }
-        finally {
+    }
 
+    public boolean editarExercicioFicha(Long id, ExercicioFichaDTO exercicioFichaDTO) {
+        try{
+            Optional<ExercicioFichaEntity> exercicioFicha = exercicioFichaRepository.findById(id);
+            if(exercicioFicha.isPresent()){
+                //ExercicioFichaEntity exercicioFichaEntity =  new ExercicioFichaEntity();
+                DtoConvesorToEntity.DtoToEntity(exercicioFichaDTO, exercicioFicha.get());
+                exercicioFichaRepository.saveAndFlush(exercicioFicha.get());
+            }
+            return true;
+        }catch (Exception e){
+            return false;
         }
     }
 }
