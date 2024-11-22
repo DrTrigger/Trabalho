@@ -39,7 +39,7 @@ public class SolicitacaoAlteracaoController {
     }
 
 
-    @PutMapping("/editar"
+    @PutMapping("/editar")
     public ResponseEntity<String> editarSolicitacao(@Valid @RequestBody SolicitacaoAlteracaoDTO solicitacaoDto, Long id){
         if(solicitacaoService.editarSolicitacao(solicitacaoDto, id)){
             return ResponseEntity.ok().body("Solicitacao atualizada com sucesso");
