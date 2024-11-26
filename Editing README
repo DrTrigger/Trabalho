@@ -16,7 +16,7 @@
 </ul>
 
 <p> A primeira versão deste projeto conta somente com o backend inicial da aplicação, sendo necessário a instalação de uma 
-  ferramenta de envio de requisições no caso do desejo de testar as funcionalidades server-side da solução.</p>
+  ferramenta de envio de requisições no caso do desejo de testar as funcionalidades server-side da solução(como, por exemplo, o Postman ou o DogAPI).</p>
 
 <h2>Estrutura de diretório(src/main/java/com/example/demo)</h2>
 <ul>
