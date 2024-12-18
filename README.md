@@ -26,3 +26,6 @@
   <li><b>service:</b> Classes que comunicam com as classes do repository e oferecem métodos de verificação para as classes do diretório controller</li>
   <li><b>utils:</b> Contém a classe DtoConversorToEntity, responsável pela conversão entre DTO e registro do banco de dados</li>
 </ul>
+<h2>Documentação</h2>
+
+Para visualizar o PDF com a documentação completa, clique [aqui](https://github.com/DrTrigger/Trabalho/blob/adb8d9bd0fea8ffa5282ea64b5606d079d8da3fe/PS%20-%20Sistema%20GymTech.pdf).
