@@ -32,3 +32,5 @@
 <img src="https://github.com/DrTrigger/Trabalho/blob/GBLucas1809-patch-1/Gymtech_conceitual.png?raw=true">
 <!--![Gymtech_conceitual](https://github.com/user-attachments/assets/fd7fd9f3-4f31-47bd-9ec1-9b8a967e5b7f)-->
 
+<h2>Documentação</h2>
+[Embed]https://github.com/DrTrigger/Trabalho/blob/GBLucas1809-patch-1/relatorio.pdf[/Embed]
