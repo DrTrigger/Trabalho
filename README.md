@@ -26,3 +26,9 @@
   <li><b>service:</b> Classes que comunicam com as classes do repository e oferecem métodos de verificação para as classes do diretório controller</li>
   <li><b>utils:</b> Contém a classe DtoConversorToEntity, responsável pela conversão entre DTO e registro do banco de dados</li>
 </ul>
+
+<h2>Modelo Conceitual</h2>
+<p>O diagrama abaixo ilustra as relações entre as principais entidades desta aplicação:</p>
+<img src="https://github.com/DrTrigger/Trabalho/blob/GBLucas1809-patch-1/Gymtech_conceitual.png?raw=true">
+<!--![Gymtech_conceitual](https://github.com/user-attachments/assets/fd7fd9f3-4f31-47bd-9ec1-9b8a967e5b7f)-->
+
