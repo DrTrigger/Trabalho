@@ -34,3 +34,9 @@
 <h2>Documentação</h2>
 
 Para visualizar o PDF com a documentação completa, clique [aqui](https://github.com/DrTrigger/Trabalho/blob/adb8d9bd0fea8ffa5282ea64b5606d079d8da3fe/PS%20-%20Sistema%20GymTech.pdf).
+
+
+<h2>Diagrama Verboso</h2>
+![diagram](https://github.com/user-attachments/assets/b9ff8666-28f8-44f3-832c-a2dbdf299350)
+
+
