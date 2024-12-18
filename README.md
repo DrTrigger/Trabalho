@@ -31,4 +31,6 @@
 <p>O diagrama abaixo ilustra as relações entre as principais entidades desta aplicação:</p>
 <img src="https://github.com/DrTrigger/Trabalho/blob/GBLucas1809-patch-1/Gymtech_conceitual.png?raw=true">
 <!--![Gymtech_conceitual](https://github.com/user-attachments/assets/fd7fd9f3-4f31-47bd-9ec1-9b8a967e5b7f)-->
+<h2>Documentação</h2>
 
+Para visualizar o PDF com a documentação completa, clique [aqui](https://github.com/DrTrigger/Trabalho/blob/adb8d9bd0fea8ffa5282ea64b5606d079d8da3fe/PS%20-%20Sistema%20GymTech.pdf).
