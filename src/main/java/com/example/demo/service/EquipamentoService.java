@@ -27,6 +27,7 @@ public class EquipamentoService {
         EquipamentoEntity equipamentoEntity = new EquipamentoEntity();
         try {
             equipamentoEntity.setNome(dto.getNome());
+            equipamentoEntity.setPeso(dto.getPeso());
             equipamentoEntity.setDataAquisicao(dto.getDataAquisicao());
             equipamentoEntity.setDescricao(dto.getDescricao());
             equipamentoEntity.setEstado(dto.getEstado());
@@ -79,6 +80,7 @@ public class EquipamentoService {
             if(equipamentoEntity.isPresent()){
                 EquipamentoEntity equipamento = equipamentoEntity.get();
                 equipamento.setNome(dto.getNome());
+                equipamento.setPeso(dto.getPeso());
                 equipamento.setDataAquisicao(dto.getDataAquisicao());
                 equipamento.setDescricao(dto.getDescricao());
                 equipamento.setEstado(dto.getEstado());

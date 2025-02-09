@@ -1,9 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.model.AlunoEntity;
-import com.example.demo.model.ContratoEntity;
-import com.example.demo.model.FichaEntity;
-import com.example.demo.model.ProfessorEntity;
+import com.example.demo.model.*;
 import com.example.demo.model.dto.*;
 import com.example.demo.repository.AlunoRepository;
 import com.example.demo.repository.FichaRepository;
@@ -37,7 +34,18 @@ public class FichaService {
             fichaResponseDTO.setId(fichaEntity.getId());
             fichaResponseDTO.setData_inicio(fichaEntity.getData_inicio());
             fichaResponseDTO.setData_fim(fichaEntity.getData_fim());
-
+            for(ExercicioFichaEntity exercicioFicha: fichaEntity.getExercicioFichaList()){
+                ExercicioFichaResponseDTO exercicioFichaResponseDTO = new ExercicioFichaResponseDTO();
+                exercicioFichaResponseDTO.setId_exercicio_ficha(exercicioFicha.getId_exercicio_ficha());
+                exercicioFichaResponseDTO.setExercicio(DtoConvesorToEntity.entityToDto(exercicioFicha.getExercicio(), new ExercicioDTO()));
+                exercicioFichaResponseDTO.setEquipamento(DtoConvesorToEntity.entityToDto(exercicioFicha.getEquipamento(), new EquipamentoResponseDTO()));
+                exercicioFichaResponseDTO.setId_ficha(exercicioFicha.getFicha().getId());
+                exercicioFichaResponseDTO.setMatricula_aluno(exercicioFicha.getFicha().getAluno().getMatricula_aluno());
+                exercicioFichaResponseDTO.setPeso(exercicioFicha.getPeso());
+                exercicioFichaResponseDTO.setTempo_descanso(exercicioFicha.getTempo_descanso());
+                exercicioFichaResponseDTO.setNumero_repeticao(exercicioFicha.getNumero_repeticao());
+                fichaResponseDTO.getExercicioFichaList().add(exercicioFichaResponseDTO);
+            }
             fichaResponseDTO.setProfessor(DtoConvesorToEntity.entityToDto(fichaEntity.getProfessor(), new ProfessorResponseDTO()));
             fichaResponseDTO.setAluno(DtoConvesorToEntity.entityToDto(fichaEntity.getAluno(), new AlunoDTO()));
             fichaResponseDTOList.add(fichaResponseDTO);
@@ -62,5 +70,61 @@ public class FichaService {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public boolean editarFicha(Long id, FichaDTO fichaDTO) {
+        Optional<FichaEntity> ficha = fichaRepository.findById(id);
+        if(ficha.isPresent()){
+            FichaEntity auxFicha = ficha.get();
+
+            Optional<AlunoEntity> aluno = alunoRepository.findById(fichaDTO.getIdAluno());
+            aluno.ifPresent(auxFicha::setAluno);
+            Optional<ProfessorEntity> professor = professorRepository.findById(fichaDTO.getIdProfessor());
+            professor.ifPresent(auxFicha::setProfessor);
+
+            auxFicha.setData_inicio(fichaDTO.getDataInicio());
+            auxFicha.setData_fim(fichaDTO.getDataFim());
+            fichaRepository.save(auxFicha);
+        }
+        return false;
+    }
+
+    public boolean deletarExercicio(Long id) {
+        Optional<FichaEntity> ficha = fichaRepository.findById(id);
+        if(ficha.isPresent()){fichaRepository.deleteById(id); return true;}
+        return false;
+    }
+
+    public FichaResponseDTO getFicha(Long id) {
+        try{
+            Optional<FichaEntity> fichaEntityS = fichaRepository.findById(id);
+            if(fichaEntityS.isPresent()){
+                FichaEntity fichaEntity = fichaEntityS.get();
+                FichaResponseDTO fichaResponseDTO = new FichaResponseDTO();
+                fichaResponseDTO.setId(fichaEntity.getId());
+                fichaResponseDTO.setData_inicio(fichaEntity.getData_inicio());
+                fichaResponseDTO.setData_fim(fichaEntity.getData_fim());
+                for(ExercicioFichaEntity exercicioFicha: fichaEntity.getExercicioFichaList()){
+                    ExercicioFichaResponseDTO exercicioFichaResponseDTO = new ExercicioFichaResponseDTO();
+                    exercicioFichaResponseDTO.setId_exercicio_ficha(exercicioFicha.getId_exercicio_ficha());
+                    exercicioFichaResponseDTO.setExercicio(DtoConvesorToEntity.entityToDto(exercicioFicha.getExercicio(), new ExercicioDTO()));
+                    exercicioFichaResponseDTO.setEquipamento(DtoConvesorToEntity.entityToDto(exercicioFicha.getEquipamento(), new EquipamentoResponseDTO()));
+                    exercicioFichaResponseDTO.setId_ficha(exercicioFicha.getFicha().getId());
+                    exercicioFichaResponseDTO.setMatricula_aluno(exercicioFicha.getFicha().getAluno().getMatricula_aluno());
+                    exercicioFichaResponseDTO.setPeso(exercicioFicha.getPeso());
+                    exercicioFichaResponseDTO.setTempo_descanso(exercicioFicha.getTempo_descanso());
+                    exercicioFichaResponseDTO.setNumero_repeticao(exercicioFicha.getNumero_repeticao());
+                    fichaResponseDTO.getExercicioFichaList().add(exercicioFichaResponseDTO);
+                }
+                fichaResponseDTO.setProfessor(DtoConvesorToEntity.entityToDto(fichaEntity.getProfessor(), new ProfessorResponseDTO()));
+                fichaResponseDTO.setAluno(DtoConvesorToEntity.entityToDto(fichaEntity.getAluno(), new AlunoDTO()));
+                return fichaResponseDTO;
+            }
+
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return null;
     }
 }

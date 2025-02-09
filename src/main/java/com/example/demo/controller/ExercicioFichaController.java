@@ -46,4 +46,16 @@ public class ExercicioFichaController {
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Erro ao editar Exercicio da ficha");
     }
+
+    @DeleteMapping("/deletar/{id}")
+    public ResponseEntity<String> deletarExercicioFicha(@PathVariable Long id){
+        // metodo a ser implementado
+        return null;
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ExercicioFichaResponseDTO> getExercicioFicha(@PathVariable Long id){
+        //metodo a ser implementado
+        return null;
+    }
 }

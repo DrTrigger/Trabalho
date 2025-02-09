@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,4 +22,5 @@ public class FichaResponseDTO implements DTO {
     private LocalDateTime data_fim;
     private AlunoDTO aluno;
     private ProfessorResponseDTO professor;
+    private List<ExercicioFichaResponseDTO> exercicioFichaList = new ArrayList<>();
 }

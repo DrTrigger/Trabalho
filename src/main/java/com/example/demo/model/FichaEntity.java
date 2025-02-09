@@ -1,10 +1,12 @@
 package com.example.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity(name = "Ficha")
 @Table(name = "ficha")
@@ -29,5 +31,10 @@ public class FichaEntity {
     @JoinColumn(name = "id_professor")
     //@JsonBackReference("professor-ficha")
     private ProfessorEntity professor;
+
+    @OneToMany(mappedBy = "ficha") // Changed from "exercicioficha" to "ficha"
+    @JsonManagedReference
+    private List<ExercicioFichaEntity> exercicioFichaList;
+
 
 }

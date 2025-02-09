@@ -41,5 +41,30 @@ public class FichaController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
 
+    @PutMapping("/editar/{id}")
+    public ResponseEntity<String> editarFicha(@PathVariable(name = "id") Long id, FichaDTO fichaDTO){
+        if(this.fichaService.editarFicha(id, fichaDTO)){
+            return ResponseEntity.status(HttpStatus.OK).body("Editado com sucesso");
+        }
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
+    }
+
+    @DeleteMapping("/deletar/{id}")
+    public ResponseEntity<String> deletarFicha(@PathVariable(name = "id") Long id){
+        if (fichaService.deletarExercicio(id)) {
+            return ResponseEntity.status(HttpStatus.OK).body("ficha deletada com sucesso");
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Erro ao deletar Exercicio");
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<FichaResponseDTO> listarfichas (@PathVariable Long id){
+        FichaResponseDTO fichaResponseDTO = fichaService.getFicha(id);
+        if(fichaResponseDTO != null){
+            return ResponseEntity.status(HttpStatus.OK).body(fichaResponseDTO);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    }
+
 
 }
