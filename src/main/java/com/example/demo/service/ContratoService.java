@@ -82,10 +82,39 @@ public class ContratoService {
     }
 
     public boolean editarContrato(Long id, @Valid ContratoDTO contratoDTO) {
+        Optional<ContratoEntity> contratoEntity = this.contratoRepository.findById(id);
+        if(contratoEntity.isPresent()){
+            ContratoEntity contrato = contratoEntity.get();
+            PlanoEntity plano = contrato.getPlano();
+
+            Optional<PlanoEntity> newPlan = this.planoRepository.findById(contratoDTO.getIdPlano());
+            if(newPlan.isPresent()){
+                plano = null;
+                contrato.setPlano(newPlan.get());
+            }
+            contrato.setStatus(contratoDTO.getStatus());
+            contrato.setData_inicio(contratoDTO.getData_inicio());
+            contrato.setData_vencimento(contratoDTO.getData_vencimento());
+            contrato.setData_fim(contratoDTO.getData_fim());
+            contrato.setValor_pago(contratoDTO.getValor_pago());
+            this.contratoRepository.save(contrato);
+        }
         return true;
     }
 
     public boolean deletarContrato(Long id) {
-        return true;
+        Optional<ContratoEntity> contratoEntity = contratoRepository.findById(id);
+        if(!contratoEntity.isPresent()){
+            return false;
+        }
+        try{
+            if(contratoEntity.isPresent()){
+                contratoRepository.delete(contratoEntity.get());
+            }
+            return true;
+        }
+        catch (Exception e){
+            return false;
+        }
     }
 }

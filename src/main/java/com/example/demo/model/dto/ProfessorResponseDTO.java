@@ -17,7 +17,6 @@ public class ProfessorResponseDTO implements DTO{
     private LocalDateTime data_nascimento;
     private String cpf;
     private String email;
-    //private String senha;
     private Double salario;
     private String cref;
     private Integer carga_horaria_semanal;

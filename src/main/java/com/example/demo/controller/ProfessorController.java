@@ -53,4 +53,13 @@ public class ProfessorController {
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Erro ao editar.");
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ProfessorResponseDTO> getProfessor(@PathVariable Long id){
+        ProfessorResponseDTO professorResponseDTO = professorService.getProfessor(id);
+        if(professorResponseDTO != null){
+            return ResponseEntity.status(HttpStatus.OK).body(professorResponseDTO);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    }
 }

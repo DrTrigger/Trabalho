@@ -2,6 +2,7 @@ package com.example.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
 @Table(name = "Contrato")
 @Setter
 @Getter
+@Data
 public class ContratoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

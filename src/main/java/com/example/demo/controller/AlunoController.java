@@ -51,4 +51,14 @@ public class AlunoController {
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Erro ao editar.");
     }
+
+    @GetMapping("/{id}")
+    public  ResponseEntity<AlunoDTO> getAluno(@PathVariable Long id){
+        AlunoDTO aluno = alunoService.getAluno(id);
+        if(alunoService.getAluno(id) != null){
+            return ResponseEntity.status(HttpStatus.OK).body(aluno);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+
+    }
 }

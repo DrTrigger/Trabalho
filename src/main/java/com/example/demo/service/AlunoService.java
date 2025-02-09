@@ -68,4 +68,18 @@ public class AlunoService {
         }
         return false;
     }
+
+    public AlunoDTO getAluno(Long id) {
+
+        try {
+            Optional<AlunoEntity> alunoEntity = alunoRepository.findById(id);
+            if(alunoEntity.isPresent()){
+                return DtoConvesorToEntity.entityToDto(alunoEntity.get(), new AlunoDTO());
+            }
+            return null;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 }

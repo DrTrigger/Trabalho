@@ -14,7 +14,6 @@ import java.util.List;
 @Entity(name = "Professor")
 @Setter
 @Getter
-@NoArgsConstructor
 public class ProfessorEntity extends PessoaEntity{
 
     private double salario;
@@ -41,5 +40,9 @@ public class ProfessorEntity extends PessoaEntity{
         this.salario = salario;
         this.cref = cref;
         this.carga_horaria_semanal = carga_horaria_semanal;
+    }
+
+    public ProfessorEntity(){
+        super();
     }
 }

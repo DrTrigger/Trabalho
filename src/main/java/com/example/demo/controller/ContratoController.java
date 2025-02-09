@@ -33,7 +33,7 @@ public class ContratoController {
         if(contratoService.cadastrarContrato(dto)){
             return ResponseEntity.ok("Cadastrado");
         }
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Algo deu Errado");
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Algo deu Errado");
     }
 
     /**

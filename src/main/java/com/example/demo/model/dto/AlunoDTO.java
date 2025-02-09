@@ -1,6 +1,7 @@
 package com.example.demo.model.dto;
 
 import com.example.demo.model.ContratoEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,6 +21,7 @@ public class AlunoDTO implements DTO{
     private LocalDateTime data_matricula;
     private String matricula_aluno;
     private String restricao_medica;
+    //@JsonIgnore
     private List<ContratoDTO> contratos;
 
     public AlunoDTO(Long id, String nome, String restricao_medica, String matricula_aluno,

@@ -82,4 +82,19 @@ public class ProfessorService {
             throw new RuntimeException(e);
         }
     }
+
+
+    public ProfessorResponseDTO getProfessor(Long id) {
+        try{
+            Optional<ProfessorEntity> professorEntity = professorRepository.findById(id);
+            ProfessorResponseDTO professorResponseDTO;
+            if(professorEntity.isPresent()){
+                professorResponseDTO = DtoConvesorToEntity.entityToDto(professorEntity.get(), new ProfessorResponseDTO());
+                return professorResponseDTO;
+            }
+            return null;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
